@@ -1,0 +1,28 @@
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/dbt_internal_packages/
+dbt/logs/
+
+# Airflow
+airflow/logs/
+
+# Environment — never commit secrets
+airflow/.env
+
+# GCP service account keys — never commit these
+*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+venv/
+.venv/
+
+# OS
+.DS_Store

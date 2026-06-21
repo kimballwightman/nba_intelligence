@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "nba-intelligence"
+version = "0.1.0"
+description = "Analytics engineering pipeline for NBA basketball intelligence using BigQuery, dbt, and Airflow"
+requires-python = ">=3.11"
+
+dependencies = [
+    "dbt-core>=2.0.0",
+    "dbt-bigquery>=2.0.0",
+    "apache-airflow>=3.0.0",
+    "apache-airflow-providers-google>=10.0.0",
+    "pandas>=2.0.0",
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "flake8>=6.0.0",
+]
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
