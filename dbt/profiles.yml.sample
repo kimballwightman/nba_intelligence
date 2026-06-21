@@ -1,0 +1,11 @@
+nba_intelligence:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      threads: 16
+      database: your-gcp-project-id
+      schema: dbt_dev
+      method: service-account
+      keyfile: ~/.dbt/your-service-account-key.json
+      location: US
