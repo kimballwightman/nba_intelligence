@@ -5,13 +5,13 @@ dbt/dbt_internal_packages/
 dbt/logs/
 
 # Airflow
-airflow/logs/
-airflow/.env
+logs/
 
 # GCP service account keys — never commit these
 *.json
 
 # Python
+.venv/
 **/__pycache__/
 **/*.pyc
 **/*.pyo
@@ -21,6 +21,9 @@ build/
 .pytest_cache/
 venv/
 .venv/
+
+# Scraper output
+data/scrapers/output/
 
 # OS
 **/.DS_Store

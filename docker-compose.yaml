@@ -1,8 +1,7 @@
 # Airflow 3 local development environment for nba_intelligence.
-# Run from the airflow/ directory:
+# Run from the repo root:
 #
-#   cd airflow/
-#   docker compose up airflow-init
+#   docker compose up airflow-init   # first time only
 #   docker compose up -d
 #
 # Airflow UI: http://localhost:8080  (default creds: airflow / airflow)
@@ -23,12 +22,15 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/gcp/nba-intelligence-sa.json
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./config:/opt/airflow/config
     - ./plugins:/opt/airflow/plugins
-    - ../dbt:/opt/airflow/dbt
+    - ./dbt:/opt/airflow/dbt
+    # SA key mounted from ~/.dbt/ so it never lives inside the repo
+    - /Users/Work/.dbt/nba-intelligence-sa.json:/opt/airflow/gcp/nba-intelligence-sa.json:ro
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
